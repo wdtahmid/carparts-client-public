@@ -19,6 +19,7 @@ const Login = () => {
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
         navigate(from, { replace: true });
+        return;
     };
 
     if (user) {
@@ -60,8 +61,6 @@ const Login = () => {
                 <div className="divider">OR</div>
                 <button className="btn btn-outline btn-primary mt-4">Continue With Google</button>
             </div>
-
-
         </>
     );
 };
