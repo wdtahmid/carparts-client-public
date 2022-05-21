@@ -1,12 +1,12 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
-const Register = () => {
+const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
     return (
         <>
-            <h2>Please Register</h2>
+            <h2 className='text-3xl'>Please Sign In</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-full max-w-xs">
                     <input
@@ -26,4 +26,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Login;
