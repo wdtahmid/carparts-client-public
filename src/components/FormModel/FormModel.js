@@ -9,7 +9,7 @@ const FormModel = () => {
             <div className="modal-box relative">
                 <label htmlFor="car-parts-login-form" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                 {toggle ? <Register /> : <Login />}
-                <button onClick={() => setToggle(!toggle)}>{toggle ? 'Have an account? signin' : "Don't have an account? register"}</button>
+                <button className='text-center w-full' onClick={() => setToggle(!toggle)}>{toggle ? 'Have an account? Login' : "Don't have an account? Register"}</button>
 
             </div>
         </div >
