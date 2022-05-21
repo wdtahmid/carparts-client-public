@@ -7,15 +7,15 @@ module.exports = {
       {
         mytheme: {
 
-          "primary": "#9e0109",
+          "primary": "#dc2626",
 
-          "secondary": "#006643",
+          "secondary": "#1f2937",
 
           "accent": "#ea0e80",
 
-          "neutral": "#1F2028",
+          "neutral": "#6b7280",
 
-          "base-100": "#373B3E",
+          "base-100": "#f3f4f6",
 
           "info": "#6BB2EF",
 
