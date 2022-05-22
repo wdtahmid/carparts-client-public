@@ -19,7 +19,6 @@ const Login = () => {
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
         navigate(from, { replace: true });
-        return;
     };
 
     if (user) {

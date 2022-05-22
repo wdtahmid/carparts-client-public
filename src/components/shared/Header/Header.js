@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import FormModel from '../../FormModel/FormModel';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import auth from '../../../hookes/firebase.init';
-import Logo from '../../../assets/images/carpartslogo.png'
+import Logo from '../../../assets/images/carpartslogo.png';
+
 
 const Header = () => {
     const [user] = useAuthState(auth);
@@ -16,6 +17,14 @@ const Header = () => {
     const navigation = <>
         <li><Link to='/'>Home</Link></li>
     </>
+    const location = useLocation();
+    const pathName = location.pathname;
+    const signInPath = '/signin';
+    const signInPage = pathName === signInPath;
+    if (signInPage) {
+        console.log("true");
+    }
+
     return (
         <div className='border-b-2 border-secondary-200 bg-white'>
             <div className='max-w-screen-xl mx-auto'>
@@ -38,12 +47,17 @@ const Header = () => {
                     </div>
 
                     <div className="navbar-end">
-                        {user ? <button onClick={logOut} className='btn btn-link'><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>Logout</button> : <><label htmlFor="car-parts-login-form" className="btn btn-link"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg> Register / Login</label>
-                            <input type="checkbox" id="car-parts-login-form" className="modal-toggle" /></>}
+                        {user ?
+                            <button onClick={logOut} className='btn btn-link'><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>Logout</button>
+                            :
+                            <>{signInPage ?
+                                <p className="btn btn-link">Log In / Register</p> :
+                                <><label htmlFor="car-parts-login-form" className="btn btn-link"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg> Register / Login</label></>}
+                                <input type="checkbox" id="car-parts-login-form" className="modal-toggle" /></>}
 
                         {user ? '' : <FormModel></FormModel>}
 

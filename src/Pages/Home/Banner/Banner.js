@@ -1,10 +1,11 @@
 import React from 'react';
 // import Swiper core and required modules
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import banner1 from '../../../assets/images/banner/banner1.png'
-import bannerBg from '../../../assets/images/banner/bannerbg.jpg'
+import bannerBg from '../../../assets/images/banner/bannerbg.jpg';
+import ring from '../../../assets/images/banner/ring.png';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -18,9 +19,8 @@ const Banner = () => {
     return (
         <Swiper style={bannerBgImg}
             // install Swiper modules
-            modules={[Navigation, Pagination, Autoplay, EffectFade]}
+            modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}
-            effect={"fade"}
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
@@ -48,7 +48,7 @@ const Banner = () => {
                         <button className='btn btn-secondary rounded-none text-white mt-10 md:mt-20'>Shop Now</button>
                     </div>
                     <div className='w-[100%] md:w-[40%]'>
-                        <img src={banner1} className='w-full' alt="" />
+                        <img src={ring} className='w-full' alt="" />
                     </div>
                 </div>
             </SwiperSlide>
