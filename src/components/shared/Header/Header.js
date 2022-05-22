@@ -22,9 +22,6 @@ const Header = () => {
     const pathName = location.pathname;
     const signInPath = '/signin';
     const signInPage = pathName === signInPath;
-    if (signInPage) {
-        console.log("true");
-    }
 
     return (
         <div className='border-b-2 border-secondary-200 bg-white'>

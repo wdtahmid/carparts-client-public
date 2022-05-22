@@ -8,6 +8,9 @@ import Purchase from './Pages/Purchase/Purchase';
 import RequireAuth from './hookes/RequireAuth'
 import SignIn from './components/Login/SignIn';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import MyReviews from './Pages/Dashboard/MyReviews';
+import MyProfile from './Pages/Dashboard/MyProfile';
 
 function App() {
   return (
@@ -25,7 +28,11 @@ function App() {
           <RequireAuth>
             <Dashboard />
           </RequireAuth>
-        }></Route>
+        }>
+          <Route path='/dashboard/myorders' element={<MyOrders />}></Route>
+          <Route path='/dashboard/myreviews' element={<MyReviews />}></Route>
+          <Route path='/dashboard/myprofile' element={<MyProfile />}></Route>
+        </Route>
 
 
         <Route path='/signin' element={<SignIn />}></Route>
