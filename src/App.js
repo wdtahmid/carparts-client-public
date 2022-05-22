@@ -9,7 +9,7 @@ import RequireAuth from './hookes/RequireAuth'
 import SignIn from './components/Login/SignIn';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
-import MyReviews from './Pages/Dashboard/MyReviews';
+import AddReview from './Pages/Dashboard/AddReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -32,7 +32,7 @@ function App() {
           </RequireAuth>
         }>
           <Route path='/dashboard/myorders' element={<MyOrders />}></Route>
-          <Route path='/dashboard/myreviews' element={<MyReviews />}></Route>
+          <Route path='/dashboard/addreview' element={<AddReview />}></Route>
           <Route path='/dashboard/myprofile' element={<MyProfile />}></Route>
         </Route>
 
