@@ -11,6 +11,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import MyReviews from './Pages/Dashboard/MyReviews';
 import MyProfile from './Pages/Dashboard/MyProfile';
+import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path='/signin' element={<SignIn />}></Route>
       </Routes>
       <Footer></Footer>
+
       <ToastContainer></ToastContainer>
     </div>
   );
