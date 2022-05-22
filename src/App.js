@@ -7,6 +7,7 @@ import Home from '../src/Pages/Home/Home'
 import Purchase from './Pages/Purchase/Purchase';
 import RequireAuth from './hookes/RequireAuth'
 import SignIn from './components/Login/SignIn';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
             <Purchase />
           </RequireAuth>
         }></Route>
+
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }></Route>
+
+
         <Route path='/signin' element={<SignIn />}></Route>
       </Routes>
       <Footer></Footer>

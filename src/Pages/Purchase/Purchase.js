@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -20,6 +21,7 @@ const Purchase = () => {
             })
     }, [id])
 
+    const minimum = parts?.min;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -35,12 +37,12 @@ const Purchase = () => {
                     <h2 className='text-primary font-bold uppercase text-4xl'>{parts?.name}</h2>
                     <h2 className='font-bold capitalize text-2xl mt-2'>Price: ${parts?.price}/unit, <span className='text-info font-semibold'>Available: {parts?.quantity} unit</span></h2>
 
-                    <label for="purchase" class="btn rounded-none modal-button btn-outline w-fit">Proceed To Purchase</label>
-                    <input type="checkbox" id="purchase" class="modal-toggle" />
-                    <div class="modal">
-                        <div class="modal-box relative">
-                            <label for="purchase" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                            <h3 class="text-lg font-bold">Fill Your Details</h3>
+                    <label htmlFor="purchase" className="btn rounded-none modal-button btn-outline w-fit">Proceed To Purchase</label>
+                    <input type="checkbox" id="purchase" className="modal-toggle" />
+                    <div className="modal">
+                        <div className="modal-box relative">
+                            <label htmlFor="purchase" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                            <h3 className="text-lg font-bold text-center my-4">Fill Your Details</h3>
 
                             <form className='flex flex-col px-6 pt-0 pb-0 gap-y-3 items-center' onSubmit={handleSubmit(onSubmit)}>
 
@@ -50,8 +52,6 @@ const Purchase = () => {
                                         placeholder={user ? user.displayName : 'Your Name'}
                                         className='input input-bordered input-info w-full'
                                         value={user ? user.displayName : 'Your Name'}
-                                        readOnly
-                                        disabled
 
                                         {...register("name")} />
 
@@ -62,8 +62,6 @@ const Purchase = () => {
                                         placeholder={user ? user.email : 'Your Email'}
                                         className='input input-bordered input-info w-full'
                                         value={user ? user.email : 'Your Name'}
-                                        readOnly
-                                        disabled
 
                                         {...register("email")} />
 
@@ -81,10 +79,9 @@ const Purchase = () => {
                                 </div>
                                 <div className="form-control w-full">
                                     <textarea
-                                        type='text-area'
                                         placeholder='Address'
-                                        className='input input-bordered input-info w-full'
-                                        row='5'
+                                        className='textarea input-bordered input-info w-full'
+                                        row='10'
 
                                         {...register("address", { required: true })} />
                                     <label className="label">
@@ -94,16 +91,18 @@ const Purchase = () => {
                                 <div className="form-control w-full">
                                     <input
                                         type='number'
-                                        placeholder='Order Quantity'
+                                        placeholder={parts ? `Minimum Order Quantity ${parts?.min}` : 'Order Quantity'}
                                         className='input input-bordered input-info w-full'
 
-                                        {...register("order", { required: true })} />
+                                        {...register("order", { required: true, min: `${minimum}`, max: `${parts?.quantity}` })} />
                                     <label className="label">
                                         <span className="text-primary">{errors.order?.type === 'required' && 'Order quantity is required'}</span>
+                                        <span className="text-primary">{errors.order?.type === 'min' && `Minimum ${parts?.min} quantity is required`}</span>
+                                        <span className="text-primary">{errors.order?.type === 'max' && `Maximum ${parts?.quantity} quantity is avaialble`}</span>
                                     </label>
                                 </div>
 
-                                <input className="btn btn-md btn-primary w-full" type="submit" value="Sign In" />
+                                <input className="btn btn-md btn-primary w-full" type="submit" value="complete the purchase" />
                             </form>
 
                         </div>
