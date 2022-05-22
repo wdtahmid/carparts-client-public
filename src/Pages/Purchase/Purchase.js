@@ -16,7 +16,6 @@ const Purchase = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setParts(data)
             })
     }, [id])
@@ -24,8 +23,22 @@ const Purchase = () => {
     const minimum = parts?.min;
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
-        console.log(data);
+    const onSubmit = order => {
+        fetch('http://localhost:5000/order', {
+            'method': 'POST',
+            'headers': {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => {
+                console.log(res);
+                return res.json();
+            })
+            .then(data => {
+                console.log(data);
+            })
+        console.log(order);
     };
 
 

@@ -22,7 +22,7 @@ const Parts = () => {
             <div className='max-w-screen-xl mx-auto'>
                 <h2 className='text-4xl uppercase font-bold'>our productive parts</h2>
                 <div className='grid grid-cols-3 gap-4 text-center'>
-                    {parts.map(onePart => <div class="card w-96 bg-base-100 shadow-xl">
+                    {parts.map(onePart => <div key={onePart._id} class="card w-96 bg-base-100 shadow-xl">
                         <figure class="px-10 pt-10">
                             <img src={onePart.image} alt="Shoes" class="rounded-xl" />
                         </figure>
