@@ -6,7 +6,7 @@ const Parts = () => {
     const navigate = useNavigate();
     const [parts, setParts] = useState([]);
     useEffect(() => {
-        fetch('parts.json')
+        fetch('http://localhost:5000/parts')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -15,7 +15,7 @@ const Parts = () => {
     }, [])
 
     const goToPurchase = (id) => {
-        navigate(`/purchase/${id}`)
+        navigate(`/purchase/parts/${id}`)
     }
     return (
         <div className='py-20'>
