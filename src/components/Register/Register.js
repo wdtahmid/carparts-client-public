@@ -32,6 +32,7 @@ const Register = () => {
         <>
             <h2 className='text-3xl mb-10 mt-5 text-center text-primary'>{loading ? 'Registering...' : 'Please Register'}</h2>
             <form className='flex flex-col px-6 pt-0 pb-0 gap-y-3 items-center' onSubmit={handleSubmit(onSubmit)}>
+
                 <div className="form-control w-full">
                     <input
                         type='text'
