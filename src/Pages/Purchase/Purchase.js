@@ -26,6 +26,10 @@ const Purchase = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = order => {
+
+        order.partsName = parts?.name;
+        order.unitPrice = parts?.price;
+
         fetch('http://localhost:5000/order', {
             'method': 'POST',
             'headers': {
@@ -42,10 +46,9 @@ const Purchase = () => {
                     setFormHide(true);
                     toast.success('your order has been recieved!');
                 }
-                console.log(data);
             })
+        console.log(order);
     };
-
 
     return (
         <div className='max-w-screen-xl mx-auto my-40'>
