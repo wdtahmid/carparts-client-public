@@ -19,6 +19,10 @@ import MyPortFolio from './Pages/MyPortFolio/MyPortFolio';
 import Blogs from './Pages/Blogs/Blogs';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import ContactUs from './Pages/ContactUs/ContactUs';
+import ManageAllOrders from './Pages/Dashboard/Admin/ManageAllOrders';
+import ManageAllProducts from './Pages/Dashboard/Admin/ManageAllProducts';
+import AddAProduct from './Pages/Dashboard/Admin/AddAProduct';
+import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
 
 function App() {
   return (
@@ -37,11 +41,19 @@ function App() {
             <Dashboard />
           </RequireAuth>
         }>
+          {/* For normal user */}
           <Route path='/dashboard/myorders' element={<MyOrders />}></Route>
           <Route path='/dashboard/addreview' element={<AddReview />}></Route>
           <Route path='/dashboard/myprofile' element={<MyProfile />}></Route>
           <Route path='/dashboard/myprofile/addtoprofile' element={<AddToProfile />}></Route>
           <Route path='/dashboard/myprofile/updateprofile' element={<UpdateProfile />}></Route>
+
+          {/* For admin */}
+          <Route path='/dashboard/manageorders' element={<ManageAllOrders />}></Route>
+          <Route path='/dashboard/manageproducts' element={<ManageAllProducts />}></Route>
+          <Route path='/dashboard/addproduct' element={<AddAProduct />}></Route>
+          <Route path='/dashboard/makeadmin' element={<MakeAdmin />}></Route>
+
         </Route>
         <Route path='myportfolio' element={<MyPortFolio />}></Route>
         <Route path='blogs' element={<Blogs />}></Route>

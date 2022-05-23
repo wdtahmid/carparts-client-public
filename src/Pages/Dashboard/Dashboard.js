@@ -31,22 +31,31 @@ const Dashboard = () => {
                         <h2 className='text-4xl text-info mt-3'>{dashboardPage ? 'Dahsboard' : ''}</h2>
                         <Outlet />
                     </div>
-                    {admin ?
 
-                        'Admin' :
+                    <div className="drawer-side">
 
-                        <div className="drawer-side">
+                        <label htmlFor="dashboard" className="drawer-overlay"></label>
 
-                            <label htmlFor="dashboard" className="drawer-overlay"></label>
+                        <ul className="menu gap-y-4 p-4 mr-12 overflow-y-auto w-64 bg-base-100 text-base-content">
 
-                            <ul className="menu gap-y-4 p-4 mr-12 overflow-y-auto w-64 bg-base-100 text-base-content">
+                            {admin ?
+                                <>
+                                    <li className='rounded-none'><Link to='/dashboard/manageorders'>Manage Orders</Link></li>
+                                    <li className='rounded-none'><Link to='/dashboard/manageproducts'>Manage Products</Link></li>
+                                    <li className='rounded-none'><Link to='/dashboard/addproduct'>Add A Product</Link></li>
+                                    <li className='rounded-none'><Link to='/dashboard/makeadmin'>Make Admin</Link></li>
+                                </>
+                                :
+                                <>
+                                    <li className='rounded-none'><Link to='/dashboard/myorders'>My Orders</Link></li>
 
-                                <li className='rounded-none'><Link to='/dashboard/myorders'>My Orders</Link></li>
-
-                                <li><Link to='/dashboard/addreview'>Add A Review</Link></li>
-
-                                <li><Link to='/dashboard/myprofile'>My Profile</Link></li>
-
+                                    <li><Link to='/dashboard/addreview'>Add A Review</Link></li>
+                                </>
+                            }
+                            <li><Link to='/dashboard/myprofile'>My Profile</Link></li>
+                            {admin ?
+                                ' '
+                                :
                                 <div className="dropdown dropdown-hover">
 
                                     <label tabIndex="0" className="w-56 btn bg-primary border-0 rounded-none text-white">Add/Update Profile</label>
@@ -57,10 +66,9 @@ const Dashboard = () => {
                                         <li><Link to='/dashboard/myprofile/updateprofile'>Update Profile</Link></li>
                                     </ul>
                                 </div>
-
-                            </ul>
-                        </div>
-                    }
+                            }
+                        </ul>
+                    </div>
 
                 </div>
             </div>
