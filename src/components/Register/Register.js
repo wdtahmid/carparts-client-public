@@ -19,6 +19,19 @@ const Register = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile(auth.currentUser, { displayName: data.name });
+
+        const user = {
+            name: data.name,
+            email: data.email
+        }
+        fetch('http://localhost:5000/upsertuser', {
+            'method': 'PUT',
+            'headers': {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+
+        })
     };
 
 

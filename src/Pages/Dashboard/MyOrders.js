@@ -38,7 +38,10 @@ const MyOrders = () => {
                                 <td>{order.partsName}</td>
                                 <td>{order.order}</td>
                                 <td>${parseInt(order.order) * order.unitPrice}</td>
-                                <td>Pay</td>
+                                <td className='flex gap-x-2'>
+                                    <button class="btn btn-info text-white rounded-none btn-xs">Pay</button>
+                                    <button class="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
+                                </td>
                             </tr>)
                         }
 
