@@ -38,6 +38,7 @@ const AddReview = () => {
         <div>
             <h2 className='text-3xl text-primary mt-3 uppercase font-semibold mb-4'>Add A Review</h2>
             <form onSubmit={addUserReview} className='p-5'>
+
                 <textarea name='review' className="textarea rounded-sm textarea-primary w-full" rows={6} placeholder="Write your review here"></textarea>
                 <div className='flex flex-wrap gap-4'>
                     <div className="form-control w-[100px]">

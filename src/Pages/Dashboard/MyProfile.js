@@ -15,9 +15,9 @@ const MyProfile = () => {
 
     if (error) return 'An error has occurred: ' + error.message;
 
-    const facebook = data[0].social;
-    const socialWebsite = facebook.split('.')[1];
-    const socialLogo = socialWebsite.slice()[0]
+    const facebook = data[0]?.social;
+    const socialWebsite = facebook?.split('.')[1];
+    const socialLogo = socialWebsite?.slice()[0]
     console.log(socialWebsite);
 
     return (
