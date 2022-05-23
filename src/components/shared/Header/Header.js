@@ -17,6 +17,10 @@ const Header = () => {
     const navigation = <>
         <li><Link to='/'>Home</Link></li>
         {user ? <li> <Link to='/dashboard'>Dashboard</Link></li> : ''}
+        <li><Link to='/aboutus'>About Us</Link></li>
+        <li><Link to='/myportfolio'>My Portfolio</Link></li>
+        <li><Link to='/blogs'>Blogs</Link></li>
+        <li><Link to='/contactus'>Contact Us</Link></li>
     </>
     const location = useLocation();
     const pathName = location.pathname;

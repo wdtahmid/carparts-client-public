@@ -23,9 +23,9 @@ const MyProfile = () => {
     return (
         <div>
             <h2 className='text-3xl text-primary mt-3 uppercase font-semibold mb-4'>My Profile</h2>
-            <div class="hero bg-base-200">
-                <div class="hero-content items-start justify-start w-full gap-10 flex-col md:flex-row">
-                    <img src={data[0]?.image ? data[0].image : 'https://via.placeholder.com/150'} class="max-w-sm rounded-lg shadow-2xl" alt='' />
+            <div className="hero bg-base-200">
+                <div className="hero-content items-start justify-start w-full gap-10 flex-col md:flex-row">
+                    <img src={data[0]?.image ? data[0].image : 'https://via.placeholder.com/150'} className="max-w-sm rounded-lg shadow-2xl" alt='' />
                     <div className='flex flex-col gap-y-4'>
                         <h2 className='flex gap-x-3'><span><UserIcon className='w-6 h-6'></UserIcon></span> <span> {user?.displayName}</span></h2>
                         <h2 className='flex gap-x-3'><span><AtSymbolIcon className='w-6 h-6'></AtSymbolIcon></span> <span>{user?.email}</span> </h2>

@@ -15,6 +15,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AddToProfile from './Pages/Dashboard/AddToProfile';
 import UpdateProfile from './Pages/Dashboard/UpdateProfile';
+import MyPortFolio from './Pages/MyPortFolio/MyPortFolio';
+import Blogs from './Pages/Blogs/Blogs';
+import AboutUs from './Pages/AboutUs/AboutUs';
+import ContactUs from './Pages/ContactUs/ContactUs';
 
 function App() {
   return (
@@ -39,6 +43,10 @@ function App() {
           <Route path='/dashboard/myprofile/addtoprofile' element={<AddToProfile />}></Route>
           <Route path='/dashboard/myprofile/updateprofile' element={<UpdateProfile />}></Route>
         </Route>
+        <Route path='myportfolio' element={<MyPortFolio />}></Route>
+        <Route path='blogs' element={<Blogs />}></Route>
+        <Route path='aboutus' element={<AboutUs />}></Route>
+        <Route path='contactus' element={<ContactUs />}></Route>
 
 
         <Route path='/signin' element={<SignIn />}></Route>

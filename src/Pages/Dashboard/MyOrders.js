@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth"
 import auth from '../../hookes/firebase.init';
+import { signOut } from 'firebase/auth';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const email = user?.email;
@@ -15,6 +16,9 @@ const MyOrders = () => {
             })
             .then(data => {
                 setOrders(data);
+                if (data.message) {
+                    signOut(auth);
+                }
             })
     }, [email])
     return (
@@ -33,14 +37,14 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <tr key={order._id}>
+                            orders?.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order.partsName}</td>
                                 <td>{order.order}</td>
                                 <td>${parseInt(order.order) * order.unitPrice}</td>
                                 <td className='flex gap-x-2'>
-                                    <button class="btn btn-info text-white rounded-none btn-xs">Pay</button>
-                                    <button class="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
+                                    <button className="btn btn-info text-white rounded-none btn-xs">Pay</button>
+                                    <button className="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
                                 </td>
                             </tr>)
                         }
