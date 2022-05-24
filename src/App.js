@@ -24,6 +24,7 @@ import ManageAllProducts from './Pages/Dashboard/Admin/ManageAllProducts';
 import AddAProduct from './Pages/Dashboard/Admin/AddAProduct';
 import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
 
+
 function App() {
   return (
     <div>

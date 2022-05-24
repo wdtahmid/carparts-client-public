@@ -21,6 +21,7 @@ const Dashboard = () => {
     const pathName = location.pathname;
     const dashboardPath = '/dashboard';
     const dashboardPage = pathName === dashboardPath;
+
     return (
         <div>
             <div className='max-w-screen-xl mx-auto'>
