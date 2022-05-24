@@ -32,7 +32,7 @@ const ManageAllProducts = () => {
                     <tbody>
                         {
                             products?.map((product, index) =>
-                                <tr key={user._id}>
+                                <tr key={product._id}>
                                     <th>{index + 1}</th>
                                     <td>{product.name}</td>
                                     <td>${product.price} /Unit</td>
