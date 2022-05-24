@@ -15,7 +15,7 @@ const Dashboard = () => {
     if (isLoading) return <p>Loading... Please wait...</p>
     if (error) return 'An error has occurred: ' + error.message;
 
-    const admin = data.role;
+    const admin = data?.role;
 
 
     const pathName = location.pathname;
