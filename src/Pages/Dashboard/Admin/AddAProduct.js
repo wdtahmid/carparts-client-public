@@ -1,36 +1,19 @@
-
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../hookes/firebase.init';
-
+import useIsAdmin from '../../../hookes/useIsAdmin';
 const AddAProduct = () => {
 
     const navigate = useNavigate();
     const [authUser] = useAuthState(auth);
     const email = authUser.email;
-    console.log(email);
 
     const { register, handleSubmit, formState: { errors }, reset, getValues, setError } = useForm();
 
-    const [admin, setAdmin] = useState(true);
-
-
-    async function getAdmin() {
-        try {
-            const response = await axios.get(`http://localhost:5000/getadmin?email=${email}`);
-            console.log(response);
-        } catch (error) {
-            if (error.response.status === 401) {
-                setAdmin(false);
-            }
-        }
-    }
-    getAdmin();
+    const [admin] = useIsAdmin(email)
 
     if (!admin) {
         navigate('/dashboard')
