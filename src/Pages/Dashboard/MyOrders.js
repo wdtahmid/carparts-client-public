@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth"
 import auth from '../../hookes/firebase.init';
-import { signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const MyOrders = () => {
 
@@ -12,18 +12,19 @@ const MyOrders = () => {
     const email = user?.email;
     const [orders, setOrders] = useState([]);
 
+
     useEffect(() => {
         const url = `http://localhost:5000/myorders?email=${email}`;
-        fetch(url)
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                setOrders(data);
-                if (data.message) {
-                    signOut(auth);
+        const getMyOrdedrs = async () => {
+            const { data } = await axios.get(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                 }
-            })
+            });
+            setOrders(data);
+
+        };
+        getMyOrdedrs();
     }, [email])
 
 
@@ -44,7 +45,6 @@ const MyOrders = () => {
                 console.log(data);
             })
     }
-    console.log(orders);
 
 
     return (

@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../hookes/firebase.init';
+import axios from 'axios';
 
 const Login = () => {
+
 
     const navigate = useNavigate();
 
@@ -16,13 +18,24 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         signInWithEmailAndPassword(data.email, data.password);
         navigate(from, { replace: true });
+
+        const user = {
+            email: data.email
+        }
+
+        const response = await axios.put('http://localhost:5000/upsertuser', user)
+        if (response.data.accessToken) {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            navigate(from, { replace: true });
+        }
+
     };
 
     if (user) {
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
 
     return (

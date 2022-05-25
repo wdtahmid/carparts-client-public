@@ -19,19 +19,6 @@ const Register = () => {
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile(auth.currentUser, { displayName: data.name });
-
-        const user = {
-            name: data.name,
-            email: data.email
-        }
-        fetch('http://localhost:5000/upsertuser', {
-            'method': 'PUT',
-            'headers': {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-
-        })
     };
 
 
@@ -41,7 +28,9 @@ const Register = () => {
 
     if (user) {
         navigate('/')
-    } return (
+    }
+
+    return (
         <>
             <h2 className='text-3xl mb-10 mt-5 text-center text-primary'>{loading ? 'Registering...' : 'Please Register'}</h2>
             <form className='flex flex-col px-6 pt-0 pb-0 gap-y-3 items-center' onSubmit={handleSubmit(onSubmit)}>
