@@ -41,8 +41,6 @@ const UpdateProfile = () => {
 
     if (error) return 'An error has occurred: ' + error.message;
 
-
-
     return (
         <div className='p-5'>
             <h2 className='text-xl text-primary mt-3 capialize font-semibold mb-4'>Update Your Profile info</h2>

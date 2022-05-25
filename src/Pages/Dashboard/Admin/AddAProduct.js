@@ -2,30 +2,60 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../hookes/firebase.init';
 
 const AddAProduct = () => {
-    const [user] = useAuthState(auth);
-    const email = user.email;
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const [authUser] = useAuthState(auth);
+    const email = authUser.email;
+
+    const { register, handleSubmit, formState: { errors }, reset, getValues, setError } = useForm();
+
+    const min = getValues("min");
+    const quantity = getValues("quantity");
+
+
     const onSubmit = formData => {
-        fetch(`http://localhost:5000/addproduct?email=${email}`, {
-            'method': 'POST',
-            'headers': {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(res => {
-                console.log(res);
-                return res.json();
+
+        if (quantity > min) {
+            fetch(`http://localhost:5000/addproduct?email=${email}`, {
+                'method': 'POST',
+                'headers': {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(formData)
             })
-            .then(data => {
-                console.log(data);
-            })
+                .then(res => {
+                    if (res.status === 200) {
+                        console.log(res.status);
+                        toast.success("You have successfully added this product!")
+                        reset();
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+        } else {
+            setError("min", { type: 'custom', message: 'custom message' });
+        }
+
     };
-    /* const min = formData.min;
-    const max = formData.quantity; */
+    const url = `http://localhost:5000/user?email=${email}`;
+
+    const { isLoading } = useQuery('adminOrUser', () => fetch(url).then(res => {
+
+        if (res.status === 401) {
+            navigate('/dashboard')
+        }
+        return res.json();
+
+    }));
+    if (isLoading) { return <p>Loading...</p> }
+
     return (
         <div className='pl-6'>
             <h2 className='text-3xl text-primary mt-3 uppercase font-semibold mb-4'>Add Products</h2>
@@ -34,7 +64,7 @@ const AddAProduct = () => {
                     <div className="form-control w-full">
 
                         <label className="label">
-                            <span className="label-text-alt">Parts Name</span>
+                            <span className="label-text-alt text-[16px]">Parts Name</span>
                         </label>
 
                         <input type="text"
@@ -42,13 +72,13 @@ const AddAProduct = () => {
                             className="input input-bordered rounded-none border-info focus:outline-none w-full" />
 
                         <label className="label">
-                            <span className="label-text-alt">{errors.name?.type === 'required' && "Name is required"}</span>
+                            <span className="label-text-alt text-[16px] text-primary">{errors.name?.type === 'required' && "Name is required"}</span>
                         </label>
                     </div>
                     <div className="form-control w-full">
 
                         <label className="label">
-                            <span className="label-text-alt">Parts Image Url</span>
+                            <span className="label-text-alt text-[16px]">Parts Image Url</span>
                         </label>
 
                         <input type="text"
@@ -56,7 +86,7 @@ const AddAProduct = () => {
                             className="input input-bordered rounded-none border-info focus:outline-none w-full" />
 
                         <label className="label">
-                            <span className="label-text-alt">{errors.image?.type === 'required' && "Image is required"}</span>
+                            <span className="label-text-alt text-[16px] text-primary">{errors.image?.type === 'required' && "Image is required"}</span>
                         </label>
                     </div>
                 </div>
@@ -65,7 +95,7 @@ const AddAProduct = () => {
                     <div className="form-control w-full">
 
                         <label className="label">
-                            <span className="label-text-alt">Parts quantity greater then min</span>
+                            <span className="label-text-alt text-[16px]">Parts quantity greater then min</span>
                         </label>
 
                         <input type="number"
@@ -73,14 +103,14 @@ const AddAProduct = () => {
                             className="input input-bordered rounded-none border-info focus:outline-none w-full" />
 
                         <label className="label">
-                            <span className="label-text-alt">{errors.quantity?.type === 'required' && "Quantity is required"}</span>
+                            <span className="label-text-alt text-[16px] text-primary">{errors.quantity?.type === 'required' && "Quantity is required"}</span>
 
                         </label>
                     </div>
                     <div className="form-control w-full">
 
                         <label className="label">
-                            <span className="label-text-alt">Set min order quantity less then quantity</span>
+                            <span className="label-text-alt text-[16px]">Set min order quantity less then quantity</span>
                         </label>
 
                         <input type="number"
@@ -89,15 +119,15 @@ const AddAProduct = () => {
                         />
 
                         <label className="label">
-                            <span className="label-text-alt">{errors.min?.type === 'required' && "Min quantity is required"}</span>
-                            {/* <span className="label-text-alt">{errors.min?.type === 'max' && "Min quantity is should be less then parts quantity"}</span> */}
+                            <span className="label-text-alt text-[16px] text-primary">{errors.min?.type === 'required' && "Min quantity is required"}</span>
+                            <span className="label-text-alt text-[16px] text-primary">{errors.min?.type === 'custom' && "Min quantity is should be less then parts quantity"}</span>
 
                         </label>
                     </div>
                     <div className="form-control w-full">
 
                         <label className="label">
-                            <span className="label-text-alt">Price Per Unit</span>
+                            <span className="label-text-alt text-[16px]">Price Per Unit</span>
                         </label>
 
                         <input type="number"
@@ -105,24 +135,30 @@ const AddAProduct = () => {
                             className="input input-bordered rounded-none border-info focus:outline-none w-full" />
 
                         <label className="label">
-                            <span className="label-text-alt">{errors.price?.type === 'required' && "Price is required"}</span>
+                            <span className="label-text-alt text-[16px] text-primary">{errors.price?.type === 'required' && "Price is required"}</span>
                         </label>
                     </div>
                 </div>
                 <div className="form-control w-full">
 
                     <label className="label">
-                        <span className="label-text-alt">Parts Description</span>
+                        <span className="label-text-alt text-[16px]">Parts Description</span>
                     </label>
 
                     <textarea type="text"
                         {...register("description", { required: true })}
                         className="input input-bordered rounded-none border-info focus:outline-none w-full"></textarea>
                     <label className="label">
-                        <span className="label-text-alt">{errors.description?.type === 'required' && "Description is required"}</span>
+                        <span className="label-text-alt text-[16px] text-primary">{errors.description?.type === 'required' && "Description is required"}</span>
                     </label>
                 </div>
-                <input className='btn btn-primary rounded-none shadow-lg mt-10' type="submit" value="Add This Product" />
+                <button
+                    onClick={() => {
+                        const minMax = getValues(["min", "quantity"]);
+                    }}
+                    type="submit"
+                    className='btn btn-primary rounded-none shadow-lg mt-10'>Add This Product</button>
+
             </form>
         </div>
     );

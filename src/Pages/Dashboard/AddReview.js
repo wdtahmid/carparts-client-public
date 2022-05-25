@@ -34,6 +34,7 @@ const AddReview = () => {
                 }
             })
     }
+
     return (
         <div>
             <h2 className='text-3xl text-primary mt-3 uppercase font-semibold mb-4'>Add A Review</h2>

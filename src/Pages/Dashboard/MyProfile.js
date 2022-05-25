@@ -20,6 +20,8 @@ const MyProfile = () => {
     const socialLogo = socialWebsite?.slice()[0]
     console.log(socialWebsite);
 
+
+
     return (
         <div>
             <h2 className='text-3xl text-primary mt-3 uppercase font-semibold mb-4'>My Profile</h2>

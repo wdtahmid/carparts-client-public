@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth"
 import auth from '../../hookes/firebase.init';
 import { signOut } from 'firebase/auth';
+import { Link } from 'react-router-dom';
+
 const MyOrders = () => {
+
     const [user] = useAuthState(auth);
     const email = user?.email;
     const [orders, setOrders] = useState([]);
@@ -21,6 +24,9 @@ const MyOrders = () => {
                 }
             })
     }, [email])
+
+
+
     return (
         <div>
             <h2 className='text-3xl text-primary mt-3 uppercase font-semibold mb-4'>My Orders</h2>
@@ -43,7 +49,7 @@ const MyOrders = () => {
                                 <td>{order.order}</td>
                                 <td>${parseInt(order.order) * order.unitPrice}</td>
                                 <td className='flex gap-x-2'>
-                                    <button className="btn btn-info text-white rounded-none btn-xs">Pay</button>
+                                    <button className="btn btn-info text-white rounded-none btn-xs"><Link to={`/dashboard/payment/${order._id}`}>Pay</Link></button>
                                     <button className="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
                                 </td>
                             </tr>)

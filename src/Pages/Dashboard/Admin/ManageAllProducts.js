@@ -2,16 +2,23 @@ import axios from 'axios';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../hookes/firebase.init';
 
 const ManageAllProducts = () => {
+    const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const email = user.email;
 
     const url = `http://localhost:5000/allproducts?email=${email}`;
 
-    const { isLoading, error, data: products, refetch } = useQuery('allProducts', () => fetch(url).then(res => res.json()));
+    const { isLoading, error, data: products, refetch } = useQuery('allProducts', () => fetch(url).then(res => {
+        if (res.status === 401) {
+            navigate('/dashboard')
+        }
+        return res.json();
+    }));
 
     if (isLoading) return <p>Loading... Please wait...</p>
     if (error) return 'An error has occurred: ' + error.message;
@@ -26,7 +33,7 @@ const ManageAllProducts = () => {
             async function productDelete() {
                 try {
                     const response = await axios.delete(url)
-                    
+
                     if (response.data.deletedCount === 1) {
                         refetch();
                         toast.warning('The parts has been deleted!')

@@ -23,6 +23,7 @@ import ManageAllOrders from './Pages/Dashboard/Admin/ManageAllOrders';
 import ManageAllProducts from './Pages/Dashboard/Admin/ManageAllProducts';
 import AddAProduct from './Pages/Dashboard/Admin/AddAProduct';
 import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
+import PayMent from './Pages/Dashboard/PayMent';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path='/dashboard/myprofile' element={<MyProfile />}></Route>
           <Route path='/dashboard/myprofile/addtoprofile' element={<AddToProfile />}></Route>
           <Route path='/dashboard/myprofile/updateprofile' element={<UpdateProfile />}></Route>
+          <Route path='/dashboard/payment/:id' element={<PayMent />}></Route>
 
           {/* For admin */}
           <Route path='/dashboard/manageorders' element={<ManageAllOrders />}></Route>

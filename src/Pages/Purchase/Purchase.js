@@ -29,6 +29,7 @@ const Purchase = () => {
 
         order.partsName = parts?.name;
         order.unitPrice = parts?.price;
+        order.price = order.unitPrice * order.order;
 
         fetch('http://localhost:5000/order', {
             'method': 'POST',

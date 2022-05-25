@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../hookes/firebase.init';
-import { useQuery } from 'react-query';
+import axios from 'axios';
+
 
 const Dashboard = () => {
+    const [user, setUser] = useState({});
     const location = useLocation();
-    const [user] = useAuthState(auth);
-    const email = user.email;
-    const url = `http://localhost:5000/user?email=${email}`;
+    const [authUser] = useAuthState(auth);
+    const email = authUser?.email;
 
-    const { isLoading, error, data } = useQuery('adminOrUser', () => fetch(url).then(res => res.json()))
-
-    if (isLoading) return <p>Loading... Please wait...</p>
-    if (error) return 'An error has occurred: ' + error.message;
-
-    const admin = data?.role;
-
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/user?email=${email}`)
+                setUser(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        getUser();
+    }, [email])
 
     const pathName = location.pathname;
     const dashboardPath = '/dashboard';
     const dashboardPage = pathName === dashboardPath;
-
+    console.log(user);
     return (
         <div>
             <div className='max-w-screen-xl mx-auto'>
@@ -39,12 +44,13 @@ const Dashboard = () => {
 
                         <ul className="menu gap-y-4 p-4 mr-12 overflow-y-auto w-64 bg-base-100 text-base-content">
 
-                            {admin ?
+                            {user?.role === 'admin' ?
                                 <>
                                     <li className='rounded-none'><Link to='/dashboard/manageorders'>Manage Orders</Link></li>
                                     <li className='rounded-none'><Link to='/dashboard/manageproducts'>Manage Products</Link></li>
                                     <li className='rounded-none'><Link to='/dashboard/addproduct'>Add A Product</Link></li>
                                     <li className='rounded-none'><Link to='/dashboard/makeadmin'>Make Admin</Link></li>
+
                                 </>
                                 :
                                 <>
@@ -54,8 +60,8 @@ const Dashboard = () => {
                                 </>
                             }
                             <li><Link to='/dashboard/myprofile'>My Profile</Link></li>
-                            {admin ?
-                                ' '
+
+                            {user?.role === 'admin' ? ' '
                                 :
                                 <div className="dropdown dropdown-hover">
 

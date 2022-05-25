@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 const Parts = () => {
 
     const navigate = useNavigate();
     const [parts, setParts] = useState([]);
+
+    /* const { isLoading, error, data: parts } = useQuery('homeParts', () => fetch('http://localhost:5000/parts').then(res => res.json()));
+
+    if (isLoading) return <p>Loading... Please wait...</p>
+    if (error) return 'An error has occurred: ' + error.message; */
+
     useEffect(() => {
-        fetch('http://localhost:5000/parts')
+        fetch('http://localhost:5000/homeparts')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 setParts(data)
             })
     }, [])
-
+    console.log(parts);
     const goToPurchase = (id) => {
         navigate(`/purchase/parts/${id}`)
     }
