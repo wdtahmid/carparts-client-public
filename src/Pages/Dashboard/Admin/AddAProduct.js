@@ -1,5 +1,6 @@
 
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
@@ -8,53 +9,71 @@ import { toast } from 'react-toastify';
 import auth from '../../../hookes/firebase.init';
 
 const AddAProduct = () => {
+
     const navigate = useNavigate();
     const [authUser] = useAuthState(auth);
     const email = authUser.email;
+    console.log(email);
 
     const { register, handleSubmit, formState: { errors }, reset, getValues, setError } = useForm();
+
+    const [admin, setAdmin] = useState(true);
+
+
+    async function getAdmin() {
+        try {
+            const response = await axios.get(`http://localhost:5000/getadmin?email=${email}`);
+            console.log(response);
+        } catch (error) {
+            if (error.response.status === 401) {
+                setAdmin(false);
+            }
+        }
+    }
+    getAdmin();
+
+    if (!admin) {
+        navigate('/dashboard')
+    }
+
+
 
     const min = getValues("min");
     const quantity = getValues("quantity");
 
 
     const onSubmit = formData => {
-
-        if (quantity > min) {
-            fetch(`http://localhost:5000/addproduct?email=${email}`, {
-                'method': 'POST',
-                'headers': {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(res => {
-                    if (res.status === 200) {
-                        console.log(res.status);
-                        toast.success("You have successfully added this product!")
-                        reset();
-                    }
-                    return res.json();
+        if (admin) {
+            if (quantity > min) {
+                fetch(`http://localhost:5000/addproduct?email=${email}`, {
+                    'method': 'POST',
+                    'headers': {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
-                .then(data => {
-                    console.log(data);
-                })
-        } else {
-            setError("min", { type: 'custom', message: 'custom message' });
+                    .then(res => {
+                        if (res.status === 200) {
+                            console.log(res.status);
+                            toast.success("You have successfully added this product!")
+                            reset();
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        console.log(data);
+                    })
+            } else {
+                setError("min", { type: 'custom', message: 'custom message' });
+            }
         }
-
-    };
-    const url = `http://localhost:5000/user?email=${email}`;
-
-    const { isLoading } = useQuery('adminOrUser', () => fetch(url).then(res => {
-
-        if (res.status === 401) {
+        else {
             navigate('/dashboard')
         }
-        return res.json();
 
-    }));
-    if (isLoading) { return <p>Loading...</p> }
+
+    };
+
 
     return (
         <div className='pl-6'>

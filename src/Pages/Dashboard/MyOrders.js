@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import auth from '../../hookes/firebase.init';
 import { signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const MyOrders = () => {
 
@@ -25,7 +26,26 @@ const MyOrders = () => {
             })
     }, [email])
 
+
+    const handleDeleteOrder = (id) => {
+        const url = `http://localhost:5000/deleteorder?id=${id}`;
+        fetch(url, {
+            'method': 'DELETE',
+        })
+            .then(res => {
+                console.log(res);
+                return res.json();
+            })
+            .then(data => {
+                if (data.deletedCount === 1) {
+                    //refetch();
+                    toast.success("Order deleted successfully!")
+                }
+                console.log(data);
+            })
+    }
     console.log(orders);
+
 
     return (
         <div>
@@ -52,7 +72,7 @@ const MyOrders = () => {
 
                                     <button disabled={order.paid === true ? "disabled" : ""} className="btn btn-info text-white rounded-none btn-xs"><Link to={`/dashboard/payment/${order._id}`}>{order.paid === true ? "Paid" : "Pay"}</Link></button>
 
-                                    <button disabled={order.paid === true ? "disabled" : ""} className="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
+                                    <button onClick={() => handleDeleteOrder(order._id)} disabled={order.paid === true ? "disabled" : ""} className="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
 
                                 </td>
                             </tr>)

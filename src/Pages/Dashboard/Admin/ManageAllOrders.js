@@ -41,6 +41,23 @@ const ManageAllOrders = () => {
                 console.log(data);
             })
     }
+    const handleShiftOrder = (id, email) => {
+        const url = `http://localhost:5000/deleteorder?id=${id}&email=${email}`;
+        fetch(url, {
+            'method': 'DELETE',
+        })
+            .then(res => {
+                console.log(res);
+                return res.json();
+            })
+            .then(data => {
+                if (data.deletedCount === 1) {
+                    refetch();
+                    toast.success("Order shifted successfully!")
+                }
+                console.log(data);
+            })
+    }
 
     console.log(orders);
     return (
@@ -66,7 +83,7 @@ const ManageAllOrders = () => {
                                 <td>${parseInt(order.order) * order.unitPrice}</td>
                                 <td className='flex gap-x-2'>
 
-                                    {order.paid === true ? <button className="btn btn-info text-white rounded-none btn-xs">Shift</button> :
+                                    {order.paid === true ? <button onClick={() => handleShiftOrder(order._id, email)} className="btn btn-info text-white rounded-none btn-xs">Shift</button> :
 
                                         <>
                                             <button className="btn btn-info text-white rounded-none btn-xs">Unpaid</button>
