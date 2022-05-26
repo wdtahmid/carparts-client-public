@@ -24,6 +24,7 @@ import ManageAllProducts from './Pages/Dashboard/Admin/ManageAllProducts';
 import AddAProduct from './Pages/Dashboard/Admin/AddAProduct';
 import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
 import PayMent from './Pages/Dashboard/PayMent';
+import SingleBlog from './Pages/Blogs/SingleBlog';
 
 
 function App() {
@@ -59,7 +60,8 @@ function App() {
 
         </Route>
         <Route path='myportfolio' element={<MyPortFolio />}></Route>
-        <Route path='blogs' element={<Blogs />}></Route>
+        <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/blogs/:blogId' element={<SingleBlog />}></Route>
         <Route path='aboutus' element={<AboutUs />}></Route>
         <Route path='contactus' element={<ContactUs />}></Route>
         <Route path='/signin' element={<SignIn />}></Route>
