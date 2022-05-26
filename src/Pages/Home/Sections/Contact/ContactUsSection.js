@@ -2,12 +2,12 @@ import React from 'react';
 
 const ContactUsSection = () => {
     return (
-        <div className='py-32'>
+        <div className='py-32 p-4'>
             <h2 className='mb-10 text-info uppercase text-4xl font-bold text-center'>Reach Us For Something Special</h2>
             <div className='max-w-screen-sm mx-auto shadow-xl rounded-lg'>
                 <form className='p-10 flex flex-col gap-y-4'>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-y-0 md:gap-x-4'>
                         <div class="form-control w-full">
                             <input
                                 type="text"
@@ -22,7 +22,7 @@ const ContactUsSection = () => {
                         </div>
                     </div>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-y-4 md:gap-y-0 md:gap-x-4'>
                         <div class="form-control w-full">
                             <input
                                 type="email"

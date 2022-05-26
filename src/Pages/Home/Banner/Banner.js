@@ -33,7 +33,7 @@ const Banner = () => {
             <SwiperSlide>
                 <div className='md:px-0 p-10 min-h-[450px] md:min-h-[650px] max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row justify-around md:justify-between items-center text-center'>
                     <div className='w-[100%] md:w-[60%] md:text-left'>
-                        <h2 className='text-5xl leading-[60px] uppercase font-semibold text-primary'>Replacement <br />steering wheel</h2>
+                        <h2 className='text-3xl md:text-5xl  leading-[35px] md:leading-[60px] uppercase font-semibold text-primary'>Replacement <br />steering wheel</h2>
                         <button className='btn btn-secondary rounded-none text-white mt-10 md:mt-20'>Shop Now</button>
                     </div>
                     <div className='w-[100%] md:w-[40%]'>
@@ -44,7 +44,7 @@ const Banner = () => {
             <SwiperSlide>
                 <div className='md:px-0 p-10 min-h-[450px] md:min-h-[650px] max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row justify-around md:justify-between items-center text-center'>
                     <div className='w-[100%] md:w-[60%] md:text-left'>
-                        <h2 className='text-5xl leading-[60px] uppercase font-semibold text-primary'>Replacement <br />steering wheel</h2>
+                        <h2 className='text-3xl md:text-5xl leading-[35px] md:leading-[60px] uppercase font-semibold text-primary'>Replacement <br />steering wheel</h2>
                         <button className='btn btn-secondary rounded-none text-white mt-10 md:mt-20'>Shop Now</button>
                     </div>
                     <div className='w-[100%] md:w-[40%]'>
@@ -55,7 +55,7 @@ const Banner = () => {
             <SwiperSlide>
                 <div className='md:px-0 p-10 min-h-[450px] md:min-h-[650px] max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row justify-around md:justify-between items-center text-center'>
                     <div className='w-[100%] md:w-[60%] md:text-left'>
-                        <h2 className='text-5xl leading-[60px] uppercase font-semibold text-primary'>Replacement <br />steering wheel</h2>
+                        <h2 className='text-3xl md:text-5xl leading-[35px] md:leading-[60px] uppercase font-semibold text-primary'>Replacement <br />steering wheel</h2>
                         <button className='btn btn-secondary rounded-none text-white mt-10 md:mt-20'>Shop Now</button>
                     </div>
                     <div className='w-[100%] md:w-[40%]'>

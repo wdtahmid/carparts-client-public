@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+//import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 const Parts = () => {
@@ -26,10 +26,10 @@ const Parts = () => {
     }
     return (
         <div className='py-32'>
-            <div className='max-w-screen-xl mx-auto'>
+            <div className='max-w-screen-xl mx-auto px-4'>
                 <h2 className='text-4xl uppercase font-bold text-center mb-10'>our productive parts</h2>
-                <div className='grid grid-cols-3 gap-4 text-center'>
-                    {parts.map(onePart => <div key={onePart._id} class="card w-96 bg-base-100 shadow-xl">
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-center'>
+                    {parts.map(onePart => <div key={onePart._id} class="card bg-base-100 shadow-xl">
                         <figure class="px-10 pt-10">
                             <img src={onePart.image} alt="Shoes" class="rounded-xl" />
                         </figure>

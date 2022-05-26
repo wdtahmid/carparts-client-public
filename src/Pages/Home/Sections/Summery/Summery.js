@@ -3,7 +3,7 @@ import React from 'react';
 const Summery = () => {
     return (
         <div className='pb-24 mb-24 bg-primary'>
-            <div className='max-w-screen-xl mx-auto text-info text-center'>
+            <div className='max-w-screen-xl mx-auto text-info text-center px-4'>
                 <h2 className='text-4xl uppercase font-bold pt-24 mb-10 text-white'>Our Goodwill is spreading</h2>
 
                 <div className="stats grid shadow">

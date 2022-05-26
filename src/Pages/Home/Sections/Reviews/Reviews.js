@@ -13,7 +13,7 @@ const Reviews = () => {
     return (
 
         <div className='pb-32'>
-            <div className='max-w-screen-xl mx-auto text-info text-center'>
+            <div className='max-w-screen-xl mx-auto text-info text-center px-4'>
                 <h2 className='text-4xl uppercase font-bold mb-10'>Buyer Feedback</h2>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                     {
