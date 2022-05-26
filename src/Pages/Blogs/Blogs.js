@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
 
+
     useEffect(() => {
 
         async function getBlogs() {
-            const response = await axios.get('blog.json')
+            const response = await axios.get('http://localhost:5000/blogs')
             setBlogs(response.data);
 
         } getBlogs();
@@ -25,13 +26,13 @@ const Blogs = () => {
                 <div className='max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6'>
 
                     {blogs?.map(blog =>
-                        <div key={blog.id} class="card bg-base-100 shadow-xl">
-                            <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
+                        <div key={blog._id} class="card bg-base-100 shadow-xl">
+                            <figure><img src={blog.image} alt="Shoes" /></figure>
                             <div class="card-body justify-between">
                                 <h2 class="card-title">{blog?.title}</h2>
                                 {/* <p>{(blog.post.split(' ', 18).join(' '))}</p> */}
                                 <div class="card-actions justify-end">
-                                    <button className='text-white btn btn-primary rounded-none btn-sm'><Link to={`/blogs/${blog.id}`}>Read More</Link></button>
+                                    <button className='text-white btn btn-primary rounded-none btn-sm'><Link to={`/blogs/${blog._id}`}>Read More</Link></button>
                                 </div>
                             </div>
                         </div>

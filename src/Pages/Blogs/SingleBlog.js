@@ -1,13 +1,34 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const SingleBlog = () => {
     const param = useParams();
-    console.log(param.blogId);
+    const id = param.blogId;
+    const [blog, setBlog] = useState({});
+
+    useEffect(() => {
+        async function getSingleBlog() {
+            const { data } = await axios.get(`http://localhost:5000/blogs/${id}`)
+            setBlog(data)
+        }
+        getSingleBlog();
+    }, [id]);
+
+    const { title, image, post } = blog;
+
     return (
-        <div>
-            <h2>Blog id: {param.blogId}</h2>
-        </div>
+        <>
+            <div className='py-20 bg-info text-white'>
+                <div className='max-w-screen-md mx-auto'>
+                    <h2 className='text-3xl uppercase drop-shadow-xl font-bold'>{title}</h2>
+                </div>
+            </div>
+            <div className='max-w-screen-md mx-auto mb-10'>
+                <div className='my-8'><img className='w-full' src={image} alt="" /></div>
+                <p className='text-xl leading-8'>{post}</p>
+            </div>
+        </>
     );
 };
 
