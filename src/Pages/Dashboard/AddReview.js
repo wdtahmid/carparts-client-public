@@ -17,7 +17,7 @@ const AddReview = () => {
             review
         }
 
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://cryptic-plateau-83425.herokuapp.com/addreview', {
             'method': 'POST',
             'headers': {
                 'content-type': 'application/json'

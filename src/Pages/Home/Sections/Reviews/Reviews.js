@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 const Reviews = () => {
 
-    const { isLoading, error, data: reviews } = useQuery('profileInfo', () => fetch('http://localhost:5000/reviews').then(res => res.json()))
+    const { isLoading, error, data: reviews } = useQuery('profileInfo', () => fetch('https://cryptic-plateau-83425.herokuapp.com/reviews').then(res => res.json()))
 
     if (isLoading) return 'Loading...'
 

@@ -11,7 +11,7 @@ const ManageAllOrders = () => {
     const [user] = useAuthState(auth);
     const email = user.email;
 
-    const url = `http://localhost:5000/manageorders?email=${email}`;
+    const url = `https://cryptic-plateau-83425.herokuapp.com/manageorders?email=${email}`;
 
     const { isLoading, error, data: orders, refetch } = useQuery('allOrders', () => fetch(url).then(res => {
         if (res.status === 401) {
@@ -25,7 +25,7 @@ const ManageAllOrders = () => {
     if (error) return 'An error has occurred: ' + error.message;
 
     const handleDeleteOrder = (id, email) => {
-        const url = `http://localhost:5000/deleteorder?id=${id}&email=${email}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/deleteorder?id=${id}&email=${email}`;
         fetch(url, {
             'method': 'DELETE',
         })
@@ -42,20 +42,20 @@ const ManageAllOrders = () => {
             })
     }
     const handleShiftOrder = (id, email) => {
-        const url = `http://localhost:5000/deleteorder?id=${id}&email=${email}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/shifteorder?id=${id}&email=${email}`;
         fetch(url, {
-            'method': 'DELETE',
+            'method': 'PUT',
         })
             .then(res => {
                 console.log(res);
                 return res.json();
             })
             .then(data => {
-                if (data.deletedCount === 1) {
+                console.log(data);
+                if (data.modifiedCount === 1) {
                     refetch();
                     toast.success("Order shifted successfully!")
                 }
-                console.log(data);
             })
     }
 
@@ -72,6 +72,7 @@ const ManageAllOrders = () => {
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Status</th>
+                            <th>Customer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,7 +84,7 @@ const ManageAllOrders = () => {
                                 <td>${parseInt(order.order) * order.unitPrice}</td>
                                 <td className='flex gap-x-2'>
 
-                                    {order.paid === true ? <button onClick={() => handleShiftOrder(order._id, email)} className="btn btn-info text-white rounded-none btn-xs">Shift</button> :
+                                    {order.paid === true ? <button onClick={() => handleShiftOrder(order._id, email)} className="btn btn-green text-white rounded-none btn-xs">{order.shift === true ? 'Shipped' : 'Pending'}</button> :
 
                                         <>
                                             <button className="btn btn-info text-white rounded-none btn-xs">Unpaid</button>
@@ -92,6 +93,7 @@ const ManageAllOrders = () => {
                                     }
 
                                 </td>
+                                <td>{order.email}</td>
                             </tr>)
                         }
 

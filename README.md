@@ -1,3 +1,15 @@
+# Welcome CarParts Manfacturer React App
+The live link [CarParts](https://car-parts-23a60.web.app/)
+
+This is a react app with SPA features. Using up todate techknowlogy and tools. It is responsive for all sizes os screen
+
+Technowlogy Used:
+- React Web
+- Tailwind CSS Framework
+- Disy UI Tailwind Component Library
+- Heroku
+- Firebase
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

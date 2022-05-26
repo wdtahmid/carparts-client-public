@@ -25,6 +25,7 @@ import AddAProduct from './Pages/Dashboard/Admin/AddAProduct';
 import MakeAdmin from './Pages/Dashboard/Admin/MakeAdmin';
 import PayMent from './Pages/Dashboard/PayMent';
 import SingleBlog from './Pages/Blogs/SingleBlog';
+import NotFound from './Pages/NotFound';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
         <Route path='contactus' element={<ContactUs />}></Route>
         <Route path='/signin' element={<SignIn />}></Route>
         <Route path='/aboutus' element={<AboutUs />}></Route>
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
 

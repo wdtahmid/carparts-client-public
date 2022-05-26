@@ -6,7 +6,7 @@ const AddToProfile = () => {
 
     const [user] = useAuthState(auth);
     const email = user?.email;
-    const url = `http://localhost:5000/addtoprofile?email=${email}`;
+    const url = `https://cryptic-plateau-83425.herokuapp.com/addtoprofile?email=${email}`;
 
     const handleAddToProfile = (e) => {
         e.preventDefault();

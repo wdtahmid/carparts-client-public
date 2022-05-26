@@ -12,7 +12,7 @@ const PayMent = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/parts?id=${id}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/parts?id=${id}`;
         const getData = async () => {
             try {
                 const response = await axios.get(url)

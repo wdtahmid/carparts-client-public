@@ -1,11 +1,17 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { updateProfile } from "firebase/auth";
 import auth from '../../hookes/firebase.init';
+import axios from 'axios';
 
 const Register = () => {
+
+
+    let location = useLocation();
+
+    let from = location.state?.from?.pathname || '/';
 
     const navigate = useNavigate();
     const [
@@ -15,18 +21,35 @@ const Register = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+
+    const [signInWithGoogle, guser, gerror] = useSignInWithGoogle(auth);
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile(auth.currentUser, { displayName: data.name });
+        const response = await axios.put('https://cryptic-plateau-83425.herokuapp.com/upsertuser', data.email)
+        if (response.data.accessToken) {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            navigate(from, { replace: true });
+        }
     };
 
+    const handleSignInWithGoogle = async () => {
 
-    if (error) {
-        return <p>{error.message}</p>
+        await signInWithGoogle();
+
+        /* const response = await axios.put('https://cryptic-plateau-83425.herokuapp.com/upsertuser', guser.email)
+        if (response.data.accessToken) {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            navigate(from, { replace: true });
+        } */
+    }
+    if (error || gerror) {
+        return <p>{error}</p>
     }
 
-    if (user) {
+    if (user || guser) {
         navigate('/')
     }
 
@@ -75,7 +98,8 @@ const Register = () => {
             </form>
             <div className="flex flex-col w-full p-6 border-opacity-50">
                 <div className="divider">OR</div>
-                <button className="btn btn-outline btn-primary mt-4">Continue With Google</button>
+
+                <button onClick={handleSignInWithGoogle} className="btn btn-outline btn-primary mt-4">Continue With Google</button>
             </div>
 
 

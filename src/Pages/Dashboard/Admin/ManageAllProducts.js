@@ -11,7 +11,7 @@ const ManageAllProducts = () => {
     const [user] = useAuthState(auth);
     const email = user.email;
 
-    const url = `http://localhost:5000/allproducts?email=${email}`;
+    const url = `https://cryptic-plateau-83425.herokuapp.com/allproducts?email=${email}`;
 
     const { isLoading, error, data: products, refetch } = useQuery('allProducts', () => fetch(url).then(res => {
         if (res.status === 401) {
@@ -28,7 +28,7 @@ const ManageAllProducts = () => {
         const confirmDelete = window.confirm("Do you want to delete this parts?");
 
         if (confirmDelete) {
-            const url = `http://localhost:5000/deleteproduct?id=${id}&email=${email}`;
+            const url = `https://cryptic-plateau-83425.herokuapp.com/deleteproduct?id=${id}&email=${email}`;
 
             async function productDelete() {
                 try {

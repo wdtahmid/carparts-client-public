@@ -14,7 +14,7 @@ const MyOrders = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/myorders?email=${email}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/myorders?email=${email}`;
         const getMyOrdedrs = async () => {
             const { data } = await axios.get(url, {
                 headers: {
@@ -29,7 +29,7 @@ const MyOrders = () => {
 
     console.log(orders);
     const handleDeleteOrder = (id) => {
-        const url = `http://localhost:5000/deleteorder?id=${id}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/deleteorder?id=${id}`;
         fetch(url, {
             'method': 'DELETE',
         })
@@ -59,6 +59,7 @@ const MyOrders = () => {
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Status</th>
+                            <th>Paymnet Id</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,11 +71,23 @@ const MyOrders = () => {
                                 <td>${parseInt(order.order) * order.unitPrice}</td>
                                 <td className='flex gap-x-2'>
 
-                                    <button disabled={order.paid === true ? "disabled" : ""} className="btn btn-info text-white rounded-none btn-xs"><Link to={`/dashboard/payment/${order._id}`}>{order.paid === true ? "Paid" : "Pay"}</Link></button>
+                                    {order.paid === true ?
+                                        <>{order.shift === true ? 'Order has been approved' : 'Waiting for shipment'}</>
+                                        :
+                                        <>
+                                            <button className="btn btn-info text-white rounded-none btn-xs">
+                                                <Link to={`/dashboard/payment/${order._id}`}>
+                                                    {order.paid === true ?
+                                                        <>Paid</> : "Pay"}</Link></button></>
+                                    }
+
+                                    {/* <button disabled={order.paid === true ? "disabled" : ""} className="btn btn-info text-white rounded-none btn-xs"><Link to={`/dashboard/payment/${order._id}`}>{order.paid === true ? <>Paid{order.paymentId
+                                    }</> : "Pay"}</Link></button> */}
 
                                     <button onClick={() => handleDeleteOrder(order._id)} disabled={order.paid === true ? "disabled" : ""} className="btn btn-primary text-white rounded-none btn-xs">Cancel</button>
 
                                 </td>
+                                <td>{order.paymentId ? <> {order.paymentId}</> : ''}</td>
                             </tr>)
                         }
 

@@ -14,7 +14,7 @@ const Dashboard = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/user?email=${email}`)
+                const response = await axios.get(`https://cryptic-plateau-83425.herokuapp.com/user?email=${email}`)
                 setUser(response.data);
             } catch (error) {
                 console.error(error);

@@ -1,6 +1,5 @@
-import { AcademicCapIcon, BadgeCheckIcon, BookOpenIcon, LinkIcon } from '@heroicons/react/outline';
+import { AcademicCapIcon, BadgeCheckIcon, LinkIcon } from '@heroicons/react/outline';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const MyPortFolio = () => {
     return (

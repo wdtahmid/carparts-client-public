@@ -13,7 +13,7 @@ const UpdateProfile = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = updatingForm => {
 
-        fetch(`http://localhost:5000/updateprofile?email=${email}`, {
+        fetch(`https://cryptic-plateau-83425.herokuapp.com/updateprofile?email=${email}`, {
             'method': 'PUT',
             'headers': {
                 'content-type': 'application/json'
@@ -35,7 +35,7 @@ const UpdateProfile = () => {
 
 
 
-    const { isLoading, error, data: profileInfo } = useQuery('profileInfo', () => fetch(`http://localhost:5000/profileinfo?email=${email}`).then(res => res.json()))
+    const { isLoading, error, data: profileInfo } = useQuery('profileInfo', () => fetch(`https://cryptic-plateau-83425.herokuapp.com/profileinfo?email=${email}`).then(res => res.json()))
 
     if (isLoading) return 'Loading...'
 

@@ -28,7 +28,7 @@ const AddAProduct = () => {
     const onSubmit = formData => {
         if (admin) {
             if (quantity > min) {
-                fetch(`http://localhost:5000/addproduct?email=${email}`, {
+                fetch(`https://cryptic-plateau-83425.herokuapp.com/addproduct?email=${email}`, {
                     'method': 'POST',
                     'headers': {
                         'content-type': 'application/json'

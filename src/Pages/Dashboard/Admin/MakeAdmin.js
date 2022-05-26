@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     const [authUser] = useAuthState(auth);
     const email = authUser.email;
 
-    const url = `http://localhost:5000/allusers?email=${email}`;
+    const url = `https://cryptic-plateau-83425.herokuapp.com/allusers?email=${email}`;
 
     const { isLoading, error, data: users, refetch } = useQuery('allUsers', () => fetch(url).then(res => {
         if (res.status === 401) {
@@ -28,7 +28,7 @@ const MakeAdmin = () => {
 
     const handleMakeAdmin = (id, email) => {
 
-        const url = `http://localhost:5000/makeadmin?id=${id}&email=${email}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/makeadmin?id=${id}&email=${email}`;
 
         fetch(url)
             .then(res => res.json())
@@ -41,7 +41,7 @@ const MakeAdmin = () => {
     }
 
     const handleRemoveAdmin = (id, email) => {
-        const url = `http://localhost:5000/removeadmin?id=${id}&email=${email}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/removeadmin?id=${id}&email=${email}`;
 
         async function getUser() {
 

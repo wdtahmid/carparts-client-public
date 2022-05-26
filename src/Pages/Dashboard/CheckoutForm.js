@@ -23,7 +23,7 @@ const CheckoutForm = ({ data }) => {
     useEffect(() => {
         const postPayment = async () => {
             try {
-                const response = await axios.post('http://localhost:5000/create-payment-intent', {
+                const response = await axios.post('https://cryptic-plateau-83425.herokuapp.com/create-payment-intent', {
                     price: 100 //parseInt(price),
                 })
                 if (response.data.clientSecret) {
@@ -88,7 +88,7 @@ const CheckoutForm = ({ data }) => {
                 transectionId: paymentIntent.id
             }
 
-            fetch(`http://localhost:5000/paidorder/${_id}`, {
+            fetch(`https://cryptic-plateau-83425.herokuapp.com/paidorder/${_id}`, {
                 'method': 'PUT',
                 'headers': {
                     'content-type': 'application/json'

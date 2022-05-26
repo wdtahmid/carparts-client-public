@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../hookes/firebase.init';
 import axios from 'axios';
 
@@ -15,10 +15,17 @@ const Login = () => {
     let from = location.state?.from?.pathname || '/';
 
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle();
+    }
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
+
         signInWithEmailAndPassword(data.email, data.password);
         navigate(from, { replace: true });
 
@@ -26,7 +33,7 @@ const Login = () => {
             email: data.email
         }
 
-        const response = await axios.put('http://localhost:5000/upsertuser', user)
+        const response = await axios.put('https://cryptic-plateau-83425.herokuapp.com/upsertuser', user)
         if (response.data.accessToken) {
             localStorage.setItem('accessToken', response.data.accessToken);
             navigate(from, { replace: true });
@@ -34,7 +41,14 @@ const Login = () => {
 
     };
 
-    if (user) {
+
+    if (gloading || loading) {
+        return <p>Please wait..</p>
+    }
+    if (guser || user) {
+        navigate(from, { replace: true });
+    }
+    if (gerror || error) {
         // navigate(from, { replace: true });
     }
 
@@ -71,7 +85,7 @@ const Login = () => {
             </form>
             <div className="flex flex-col w-full p-6 border-opacity-50">
                 <div className="divider">OR</div>
-                <button className="btn btn-outline btn-primary mt-4">Continue With Google</button>
+                <button onClick={handleSignInWithGoogle} className="btn btn-outline btn-primary mt-4">Continue With Google</button>
             </div>
         </>
     );

@@ -9,7 +9,7 @@ const SingleBlog = () => {
 
     useEffect(() => {
         async function getSingleBlog() {
-            const { data } = await axios.get(`http://localhost:5000/blogs/${id}`)
+            const { data } = await axios.get(`https://cryptic-plateau-83425.herokuapp.com/blogs/${id}`)
             setBlog(data)
         }
         getSingleBlog();

@@ -7,7 +7,7 @@ const useIsAdmin = (email) => {
 
     async function getAdmin() {
         try {
-            await axios.get(`http://localhost:5000/getadmin?email=${email}`);
+            await axios.get(`https://cryptic-plateau-83425.herokuapp.com/getadmin?email=${email}`);
         } catch (error) {
             if (error.response.status === 401) {
                 setAdmin(false);

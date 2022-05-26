@@ -14,7 +14,7 @@ const Purchase = () => {
     const [formHide, setFormHide] = useState(false)
 
     useEffect(() => {
-        const url = `http://localhost:5000/purchase/parts/${id}`;
+        const url = `https://cryptic-plateau-83425.herokuapp.com/purchase/parts/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -31,7 +31,7 @@ const Purchase = () => {
         order.unitPrice = parts?.price;
         order.price = order.unitPrice * order.order;
 
-        fetch('http://localhost:5000/order', {
+        fetch('https://cryptic-plateau-83425.herokuapp.com/order', {
             'method': 'POST',
             'headers': {
                 'content-type': 'application/json'

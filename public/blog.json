@@ -6,17 +6,17 @@
     },
     {
         "title": "What are the different ways to manage a state in a React application?",
-        "post": "There are many ways to in crease the permonse of an react app. A huge amount of article are flying in internet. But in this post we will discus that how can we do this in a simple way, please stay with us till the end.In this guide, we will discuss five important ways to optimize the performance of a React application, including pre-optimization techniques. These include: 1.Use your component where it is need.2.Prevent re-rendering.3.Use dynamic import using ES6 features.4.Use lazy loading if neccesary.",
+        "post": "Not only are there are a lot of different kinds of state, but there frequently dozens of ways of managing each kind. Which should you choose?In this companion, we will uncover the several kinds of state in your React apps that you might not be apprehensive of, plus how to manage them in the most effective way.There are four main types of state you need to properly manage in your React apps: 1.Local state, 2.Global state, 3.Server state 4.URL state",
         "image": "https://i.ibb.co/h2kS470/state.png"
     },
     {
         "title": "How does prototypical inheritance work?",
-        "post": "There are many ways to in crease the permonse of an react app. A huge amount of article are flying in internet. But in this post we will discus that how can we do this in a simple way, please stay with us till the end.In this guide, we will discuss five important ways to optimize the performance of a React application, including pre-optimization techniques. These include: 1.Use your component where it is need.2.Prevent re-rendering.3.Use dynamic import using ES6 features.4.Use lazy loading if neccesary.",
+        "post": "Every object with its styles and parcels contains an internal and retired property known as(( Prototype)). The Prototypal Heritage is a point in javascript used to add styles and parcels in objects. It's a system by which an object can inherit the parcels and styles of another object. Traditionally, in order to get and set the(( Prototype)) of an object, we useObject.getPrototypeOf andObject.setPrototypeOf. Currently, in ultramodern language, it's being set using, proto,.",
         "image": "https://i.ibb.co/HPdD4zV/prototype.png"
     },
     {
         "title": "Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts",
-        "post": "There are many ways to in crease the permonse of an react app. A huge amount of article are flying in internet. But in this post we will discus that how can we do this in a simple way, please stay with us till the end.In this guide, we will discuss five important ways to optimize the performance of a React application, including pre-optimization techniques. These include: 1.Use your component where it is need.2.Prevent re-rendering.3.Use dynamic import using ES6 features.4.Use lazy loading if neccesary.",
+        "post": "One should noway modernize the state directly because of the following reasons Still, calling the setState() subsequently may just replace the update you made, If you modernize it directly.When you directly modernize the state, it doesn't changethis.state incontinently. Rather, it creates a pending state transition, and penetrating it after calling this system will only return the present value.You'll lose control of the state across all factors.Note Out of all the reply questions, this is one that actually helps the canvasser to judge your position of understanding in this subject. Read the answer precisely to understand it",
         "image": "https://i.ibb.co/CBGj35b/state1.png"
     },
     {
@@ -26,7 +26,7 @@
     },
     {
         "title": "What is a unit test? Why should write unit tests?",
-        "post": "There are many ways to in crease the permonse of an react app. A huge amount of article are flying in internet. But in this post we will discus that how can we do this in a simple way, please stay with us till the end.In this guide, we will discuss five important ways to optimize the performance of a React application, including pre-optimization techniques. These include: 1.Use your component where it is need.2.Prevent re-rendering.3.Use dynamic import using ES6 features.4.Use lazy loading if neccesary.",
+        "post": "Unit testing is a software development process in which the smallest testable parts of an application, called units, are individually and independently scrutinized for proper operation. This testing methodology is done during the development process by the software developers and sometimes QA staff.  The main objective of unit testing is to isolate written code to test and determine if it works as intended.Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.Unit testing is a component of test-driven development (TDD), a pragmatic methodology that takes a meticulous approach to building a product by means of continual testing and revision. This testing method is also the first level of software testing, which is performed before other testing methods such as integration testing. Unit tests are typically isolated to ensure a unit does not rely on any external code or functions. Testing can be done manually but is often automated.",
         "image": "https://i.ibb.co/JQw76cy/blog6.png"
     }
 ]

@@ -7,13 +7,13 @@ const Parts = () => {
     const navigate = useNavigate();
     const [parts, setParts] = useState([]);
 
-    /* const { isLoading, error, data: parts } = useQuery('homeParts', () => fetch('http://localhost:5000/parts').then(res => res.json()));
+    /* const { isLoading, error, data: parts } = useQuery('homeParts', () => fetch('https://cryptic-plateau-83425.herokuapp.com/parts').then(res => res.json()));
 
     if (isLoading) return <p>Loading... Please wait...</p>
     if (error) return 'An error has occurred: ' + error.message; */
 
     useEffect(() => {
-        fetch('http://localhost:5000/homeparts')
+        fetch('https://cryptic-plateau-83425.herokuapp.com/homeparts')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

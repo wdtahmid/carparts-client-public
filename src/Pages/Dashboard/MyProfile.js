@@ -9,7 +9,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const email = user?.email;
 
-    const { isLoading, error, data } = useQuery('profileInfo', () => fetch(`http://localhost:5000/profileinfo?email=${email}`).then(res => res.json()))
+    const { isLoading, error, data } = useQuery('profileInfo', () => fetch(`https://cryptic-plateau-83425.herokuapp.com/profileinfo?email=${email}`).then(res => res.json()))
 
     if (isLoading) return 'Loading...'
 
