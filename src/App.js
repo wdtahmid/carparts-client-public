@@ -62,9 +62,8 @@ function App() {
         <Route path='blogs' element={<Blogs />}></Route>
         <Route path='aboutus' element={<AboutUs />}></Route>
         <Route path='contactus' element={<ContactUs />}></Route>
-
-
         <Route path='/signin' element={<SignIn />}></Route>
+        <Route path='/aboutus' element={<AboutUs />}></Route>
       </Routes>
       <Footer></Footer>
 

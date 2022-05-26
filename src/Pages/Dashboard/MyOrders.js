@@ -27,7 +27,7 @@ const MyOrders = () => {
         getMyOrdedrs();
     }, [email])
 
-
+    console.log(orders);
     const handleDeleteOrder = (id) => {
         const url = `http://localhost:5000/deleteorder?id=${id}`;
         fetch(url, {

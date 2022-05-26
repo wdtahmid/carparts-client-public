@@ -47,25 +47,25 @@ const UpdateProfile = () => {
 
             <form className='flex flex-col gap-y-5' onSubmit={handleSubmit(onSubmit)}>
                 <input
-                    defaultValue={updating.education ? updating.education : profileInfo[0].education} {...register("educaion")}
+                    defaultValue={updating?.education ? updating?.education : profileInfo[0]?.education} {...register("educaion")}
                     type="text"
                     placeholder="Add your education"
                     className="input input-bordered rounded-none input-primary w-full max-w-xs" />
 
                 <input
-                    defaultValue={updating.location ? updating.location : profileInfo[0].location} {...register("location")}
+                    defaultValue={updating.location ? updating.location : profileInfo[0]?.location} {...register("location")}
                     type="text"
                     placeholder="Add your location"
                     className="input input-bordered rounded-none input-primary w-full max-w-xs" />
 
                 <input
-                    defaultValue={updating.phone ? updating.phone : profileInfo[0].phone} {...register("phone")}
+                    defaultValue={updating.phone ? updating.phone : profileInfo[0]?.phone} {...register("phone")}
                     type="text"
                     placeholder="Add your phone"
                     className="input input-bordered rounded-none input-primary w-full max-w-xs" />
 
                 <input
-                    defaultValue={updating.social ? updating.social : profileInfo[0].social} {...register("social")}
+                    defaultValue={updating.social ? updating.social : profileInfo[0]?.social} {...register("social")}
                     type="text"
                     placeholder="Add your social"
                     className="input input-bordered rounded-none input-primary w-full max-w-xs" />

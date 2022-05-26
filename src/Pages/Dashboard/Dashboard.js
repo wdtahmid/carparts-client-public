@@ -23,10 +23,11 @@ const Dashboard = () => {
         getUser();
     }, [email])
 
+    console.log(user);
+
     const pathName = location.pathname;
     const dashboardPath = '/dashboard';
     const dashboardPage = pathName === dashboardPath;
-    console.log(user);
     return (
         <div>
             <div className='max-w-screen-xl mx-auto'>
