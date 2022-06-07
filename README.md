@@ -4,12 +4,14 @@ The live link [CarParts](https://car-parts-23a60.web.app/)
 This is a react app with SPA features. Using up todate techknowlogy and tools. It is responsive for all sizes os screen
 
 Technowlogy Used:
-- React.Js front-end dsign
+- React.Js for front-end dsign
 - Tailwind CSS Framework
-- Daisy UI Tailwind Component Library
+- Daisy UI as Tailwind Component Library
 - Heroku for databse server
 - Firebase for authentication
 - Different dashboard / routes for user and admin
+- Admin can add, edite, update or delete a product, deliverd a product and has abilty to make an user as a admin.
+- User can make an order, review and can pay using stripe.
 
 # Getting Started with Create React App
 
